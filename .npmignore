@@ -1,0 +1,35 @@
+# Node
+node_modules/*
+npm-debug.log
+
+# DO NOT IGNORE TYPESCRIPT FILES FOR NPM
+# TypeScript
+# *.js
+# *.map
+# *.d.ts
+
+# JetBrains
+.idea
+.project
+.settings
+.idea/*
+*.iml
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Mac
+.DS_Store
+**/.DS_Store
+
+# Project files to be ignored
+.gitignore
+.travis.yml
+angular-cli.json
+dev/*
+ng2-component-embed-html-css.py
+src/*
+tsconfig.json
+tslint.json
+typings.json
