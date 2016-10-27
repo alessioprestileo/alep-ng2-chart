@@ -1,6 +1,6 @@
 {
   "name": "alep-ng2-chart",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "lint": "tslint src/**/*.ts",
     "postinstall": "typings install",

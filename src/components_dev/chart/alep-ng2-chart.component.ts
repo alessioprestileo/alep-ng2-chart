@@ -7,7 +7,7 @@ import { iChart } from '../../models/iChart'
 declare var uv: any;
 
 @Component({
-  selector: 'app-chart',
+  selector: 'alep-ng2-chart',
   templateUrl: 'alep-ng2-chart.component.html',
   styleUrls: ['alep-ng2-chart.component.css']
 })
