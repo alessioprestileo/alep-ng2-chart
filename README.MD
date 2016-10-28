@@ -20,9 +20,9 @@ This component depends on:
 Inputs:
 
 - **inputConfig: Object** (optional) = object defined in the uvCharts.js API. Default values are as follows:
-	- **effects: Object** = {duration: 300, hovercolor: '#ffff00'},
-    - **graph: Object** = {orientation: 'Vertical', palette: 'Soft', responsive: true},
-    - **meta: Object** = {position: '.app-uvChart'}
+	- **effects: Object** = { duration: 300, hovercolor: '#ffff00' },
+    - **graph: Object** = { orientation: 'Vertical', palette: 'Soft', responsive: true },
+    - **meta: Object** = { position: '.alep-ng2-chart-container[id='unique\_id'] }, where 'unique\_id' is equal to the 'id' property of the iChart object if the inputChartObject is given, otherwise it is set to an automatically assigned id.
 
 - **inputGraphDef: Object** (required if **inputChartObject** is not given) = object defined in the uvCharts.js API.
 
