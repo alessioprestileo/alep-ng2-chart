@@ -13,31 +13,18 @@ $ npm install alep-ng2-chart --save
 This component depends on:
 
 - **D3.js** (https://d3js.org/)
-- **uvCharts.js** (http://imaginea.github.io/uvCharts/documentation.html)
 
 ## Usage
 
 Inputs:
 
-- **inputConfig: Object** (optional) = object defined in the uvCharts.js API. Default values are as follows:
-	- **effects: Object** = { duration: 300, hovercolor: '#ffff00' },
-    - **graph: Object** = { orientation: 'Vertical', palette: 'Soft', responsive: true },
-    - **meta: Object** = { position: '.alep-ng2-chart-container[id='unique\_id'] }, where 'unique\_id' is equal to the 'id' property of the iChart object if the inputChartObject is given, otherwise it is set to an automatically assigned id.
+  @Input() private emUpdateChart: EventEmitter<any>;
+  @Input() private inputChart: iAlepNg2InputChart;
+  @Input() private inputChartStyling: Object = {};
 
-- **inputGraphDef: Object** (required if **inputChartObject** is not given) = object defined in the uvCharts.js API.
-
-- **inputType: string** (optional) = object defined in the uvCharts.js API. Default value = 'Bar'.
-
-- **inputChartObject: iChart** (required if **inputGraphDef** is not given) = object defined in dist/models/iChart.d.ts, having the following properties:
-
-	- **collections: iChartColl[]** = array of iChartColl objects, as defined in dist/models/iChartColl.d.ts
-  	- **hAxisLabel: string** = label for the horizontal axis
-	- **id: number** = chart id
-	- **name: string** = chart name
-	- **title: string** = chart title, to be displayed above the chart
-	- **subTitle: string** = chart subtitle, to be displayed below the chart title
-	- **type: string** = chart type, valid values are as defined by the uvCharts.js API
-	- **vAxisLabel: string** = label for the vertical axis
+- **emUpdateChart: EventEmitter<any>** (optional) = reference to an event emitter that signals when to update the chart.
+- **inputChart: iAlepNg2InputChart** (required) = object defined in dist/models/iAlepNg2InputChart.d.ts.
+- **inputChartStyling: Object** (optional) = object that can have any of the properties defined in dist/models/iStylingChart.d.ts. Every property given in this input will override the corresponding property in the default styling object in a merge procedure. Any non-specified property will have the default value. 
 
 ## Development
 

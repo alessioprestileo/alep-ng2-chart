@@ -1,29 +1,4 @@
-.alep-ng2-chart-caption {
-  font-size: 2rem;
-  font-weight: bold;
-  text-align: center;
-}
 .alep-ng2-chart-container {
   height: 100%;
   width: 100%;
-}
-.alep-ng2-chart-subCaption {
-  font-size: 1.5rem;
-  text-align: center;
-}
-@media (min-width: 376px) and (max-width: 767px) {
-  .alep-ng2-chart-caption {
-    font-size: 1.2rem;
-  }
-  .alep-ng2-chart-subCaption {
-    font-size: 0.8rem;
-  }
-}
-@media (max-width: 375px) {
-  .alep-ng2-chart-caption {
-    font-size: 0.7rem;
-  }
-  .alep-ng2-chart-subCaption {
-    font-size: 0.5rem;
-  }
 }

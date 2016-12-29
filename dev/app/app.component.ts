@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { iChart } from './shared/models/iChart'
+import { iAlepNg2InputChart } from './shared/models/iAlepNg2InputChart'
 
 declare var require: any;
 
@@ -10,95 +10,84 @@ declare var require: any;
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  private chartInput: { config: Object, graphDef: Object, type: string } = {
-    config: {},
-    graphDef: {},
-    type: null,
-  };
-  private chartObject: iChart;
+  private chartInput: iAlepNg2InputChart;
 
   constructor() {
   }
 
   ngOnInit() {
     this.setChartInput();
-    this.setChartObject();
   }
 
   private setChartInput() : void {
-    this.chartInput.graphDef = {
-      categories : ['uvCharts', 'Matisse', 'SocialByWay'],
-      dataset : {
-        'uvCharts' : [
-          { name : '2008', value: 15},
-          { name : '2009', value: 28},
-          { name : '2010', value: 42},
-          { name : '2011', value: 88},
-          { name : '2012', value: 100},
-          { name : '2013', value: 143}
-        ],
-        'Matisse' : [
-          { name : '2008', value: 15 * 1.2},
-          { name : '2009', value: 28 * 1.2},
-          { name : '2010', value: 42 * 1.2},
-          { name : '2011', value: 88 * 1.2},
-          { name : '2012', value: 100 * 1.2},
-          { name : '2013', value: 143 * 1.2}
-        ],
-        'SocialByWay' : [
-          { name : '2008', value: 15 * 0.8},
-          { name : '2009', value: 28 * 0.8},
-          { name : '2010', value: 42 * 0.8},
-          { name : '2011', value: 88 * 0.8},
-          { name : '2012', value: 100 * 0.8},
-          { name : '2013', value: 143 * 0.8}
-        ]
-      }
-    };
-  }
-  private setChartObject() : void {
-    this.chartObject = {
+    this.chartInput = {
+      id: 2,
       collections: [
         {
+          id: 3,
           dataSet: {
-            dataPoints: {
-              '2008': 15,
-              '2009': 28,
-              '2010': 42,
-              '2011': 88,
-              '2012': 100,
-              '2013': 143
-            },
-            field: 'uvCharts',
-            ticker: 'Projects'
+            "ticker": 'Portland, OR from 2016/09/12 to 2016/09/18',
+            "field": 'Max temperature (°F)',
+            "dataPoints": {
+              "Monday": 78.4,
+              "Tuesday": 80.2,
+              "Wednesday": 84.7,
+              "Thursday": 82.8,
+              "Friday": 86.2,
+              "Saturday": 71.8,
+              "Sunday": 72.0,
+            }
           },
-          id: 1,
-          name: 'Collection_1'
+          label: 'Max daily temperature',
+          name: 'Max daily temperature (Fahrenheit) in Portland, OR from ' +
+          '2016/09/12 to 2016/09/18'
         },
         {
+          id: 5,
           dataSet: {
-            dataPoints: {
-              '2008': 15 * 1.2,
-              '2009': 28 * 1.2,
-              '2010': 42 * 1.2,
-              '2011': 88 * 1.2,
-              '2012': 100 * 1.2,
-              '2013': 143 * 1.2
-            },
-            field: 'Matisse',
-            ticker: 'Projects'
+            "ticker": 'Portland, OR from 2016/09/12 to 2016/09/18',
+            "field": 'Min temperature (°F)',
+            "dataPoints": {
+              "Monday": 50.4,
+              "Tuesday": 48.6,
+              "Wednesday": 50.4,
+              "Thursday": 55.8,
+              "Friday": 62.2,
+              "Saturday": 63.1,
+              "Sunday": 53.2,
+            }
           },
-          id: 2,
-          name: 'Collection_2'
+          label: 'Min daily temperature',
+          name: 'Min daily temperature (Fahrenheit) in Portland, OR from ' +
+          '2016/09/12 to 2016/09/18'
+        },
+        {
+          id: 7,
+          dataSet: {
+            "ticker": 'Portland, OR from 2016/09/12 to 2016/09/18',
+            "field": 'Avg temperature (°F)',
+            "dataPoints": {
+              "Monday": 64.7,
+              "Tuesday": 66.7,
+              "Wednesday": 66.6,
+              "Thursday": 65.1,
+              "Friday": 67.6,
+              "Saturday": 64.7,
+              "Sunday": 65.0,
+            }
+          },
+          label: 'Avg daily temperature',
+          name: 'Avg daily temperature (Fahrenheit) in Portland, OR from ' +
+          '2016/09/12 to 2016/09/18'
         }
       ],
-      hAxisLabel: 'Years',
-      id: 1,
-      name: 'Chart_1',
-      title: 'Number of developers per project from 2008 to 2013',
-      subTitle: 'Source: Internal database',
+      hAxisLabel: 'Days',
+      name: 'Max, min and avg temp-(°F)-daily-Portland, OR-2016/09/12 to ' +
+      '2016/09/18',
+      subtitle: 'from 2016/09/12 to 2016/09/18',
+      title: 'Max, min, and avg daily temperature (°F) in Portland, OR',
       type: 'Line',
-      vAxisLabel: 'N. of Developers'
-    }
+      vAxisLabel: 'Temperature (°F)'
+    };
   }
 }

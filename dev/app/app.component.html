@@ -1,15 +1,9 @@
-<div class="container-fluid">
+<div class="container-fluid"
+  *ngIf="chartInput">
   <div style="padding-left: 15%;
             width: 70%">
     <alep-ng2-chart
-            [inputGraphDef]="chartInput.graphDef"
-            [inputChartObject]="chartObject">
-    </alep-ng2-chart>
-  </div>
-  <div style="padding-left: 15%;
-            width: 70%">
-    <alep-ng2-chart
-            [inputGraphDef]="chartInput.graphDef">
+      [inputChart]="chartInput">
     </alep-ng2-chart>
   </div>
 </div>
