@@ -21,10 +21,8 @@ export abstract class WrappableD3TextElement extends D3Element {
         .attr("x", x)
         .attr("y", y)
         .attr("dy", dy + "em")
-        .style({
-          'font-size': fontSize,
-          'font-weight': fontWeight
-        });
+        .style('font-size', fontSize)
+        .style('font-weight', fontWeight);
     while (word = words.pop()) {
       line.push(word);
       tSpan.text(line.join(" "));
@@ -37,10 +35,8 @@ export abstract class WrappableD3TextElement extends D3Element {
           .attr("x", x)
           .attr("y", y)
           .attr("dy", ++lineNumber * lineHeight + dy + "em")
-          .style({
-            'font-size': fontSize,
-            'font-weight': fontWeight
-          });
+          .style('font-size', fontSize)
+          .style('font-weight', fontWeight);
       }
     }
   }

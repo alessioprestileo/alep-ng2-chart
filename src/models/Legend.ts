@@ -56,27 +56,20 @@ export abstract class Legend extends D3Element {
       let legendEntry: any = d3SelectionLegendGroup
         .append('g')
         .attr('class', 'legend-entry')
-        .attr(
-          'transform',
-          `translate(0 ${legendEntryVPos})`
-        );
+        .attr('transform', `translate(0 ${legendEntryVPos})`);
       legendEntry
         .append('rect')
         .attr('class', 'legend-entry-symbol')
-        .attr({
-          'fill': d3ScaleColorPalette(i),
-          'height': symbolHeight,
-          'width': symbolWidth
-        });
+        .attr('fill', d3ScaleColorPalette(i))
+        .attr('height', symbolHeight)
+        .attr('width', symbolWidth);
       legendEntry
         .append('text')
         .attr('class', 'legend-entry-text')
         .text(labels[i])
-        .attr({
-          'font-size': fontSize,
-          'transform':
-            `translate(${symbolWidth + textMarginLeft} ${symbolHeight})`
-        });
+        .attr('font-size', fontSize)
+        .attr('transform',
+          `translate(${symbolWidth + textMarginLeft} ${symbolHeight})`);
     }
   }
   /* Public methods */

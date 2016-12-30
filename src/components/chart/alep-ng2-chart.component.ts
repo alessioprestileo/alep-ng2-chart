@@ -498,7 +498,7 @@ export class AlepNg2ChartComponent implements OnDestroy, OnInit {
 
     new Chart(
       chartContainerId,
-      d3.select(`.alep-ng2-chart-container[container-id="${chartContainerId}"`),
+      d3.select(`.alep-ng2-chart-container[container-id="${chartContainerId}"]`),
       inputChart,
       styling
     );

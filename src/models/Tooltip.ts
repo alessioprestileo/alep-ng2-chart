@@ -28,22 +28,20 @@ export class Tooltip {
     let tooltipSelection: any = parentD3SelectionDocumentBody
       .append('div')
       .attr('class', 'alep-ng2-chart-tooltip')
-      .style({
-        'background': styling.tooltip.backgroundColor[0],
-        'border-color': styling.tooltip.borderColor[0],
-        'border-radius': styling.tooltip.borderRadius[0] + 'px',
-        'color': styling.tooltip.fontColor[0],
-        'font-size': styling.tooltip.fontSize[0] + 'px',
-        'left': '0px',
-        'opacity': 0,
-        'padding-bottom': styling.tooltip.paddingBottom[0] + 'px',
-        'padding-left': styling.tooltip.paddingLeft[0] + 'px',
-        'padding-right': styling.tooltip.paddingRight[0] + 'px',
-        'padding-top': styling.tooltip.paddingTop[0] + 'px',
-        'top': '0px',
-        'position': 'absolute'
-      });
-    tooltipSelection[0][0].setAttribute(
+      .style('background', styling.tooltip.backgroundColor[0])
+      .style('border-color', styling.tooltip.borderColor[0])
+      .style('border-radius', styling.tooltip.borderRadius[0] + 'px')
+      .style('color', styling.tooltip.fontColor[0])
+      .style('font-size', styling.tooltip.fontSize[0] + 'px')
+      .style('left', '0px')
+      .style('opacity', 0)
+      .style('padding-bottom', styling.tooltip.paddingBottom[0] + 'px')
+      .style('padding-left', styling.tooltip.paddingLeft[0] + 'px')
+      .style('padding-right', styling.tooltip.paddingRight[0] + 'px')
+      .style('padding-top', styling.tooltip.paddingTop[0] + 'px')
+      .style('top', '0px')
+      .style('position', 'absolute');
+    tooltipSelection['_groups'][0][0].setAttribute(
       'tooltip-id', chartContainerId
     );
     return tooltipSelection;
@@ -54,7 +52,7 @@ export class Tooltip {
 
     let fadeOutDuration: number = styling.tooltip
       .fadeOutDuration[0];
-    d3.select('body')[0][0]
+    d3.select('body')['_groups'][0][0]
       .addEventListener('touchstart', function() {
         // Fade out tooltip if active
         if (
@@ -84,12 +82,12 @@ export class Tooltip {
     let styling: iStylingChart = this.styling;
 
     let fadeInDuration: number = styling.tooltip.fadeInDuration[0];
-    let width: number = d3Selection[0][0].offsetWidth;
+    let width: number = d3Selection['_groups'][0][0].offsetWidth;
     d3Selection
       .style('left', function() {
-        let plotAreaMarginLeft: number = d3SelectionPlotArea[0][0]
+        let plotAreaMarginLeft: number = d3SelectionPlotArea['_groups'][0][0]
           .getBoundingClientRect().left;
-        let plotAreaWidth: number = d3SelectionPlotArea[0][0]
+        let plotAreaWidth: number = d3SelectionPlotArea['_groups'][0][0]
           .getBoundingClientRect().width;
         let result: string =
           (d3.event.pageX - plotAreaMarginLeft) < plotAreaWidth / 2 ?

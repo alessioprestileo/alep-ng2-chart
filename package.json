@@ -28,7 +28,7 @@
   "main": "./dist/index.js",
   "typings": "./dist/index.d.ts",
   "dependencies": {
-    "d3": "^4.2.8"
+    "d3": "^4.4.0"
   },
   "devDependencies": {
     "@angular/common": "^2.3.1",

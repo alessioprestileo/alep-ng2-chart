@@ -52,26 +52,22 @@ export class PlotAreaLine extends PlotAreaOrthogonal {
     let values: number[];
     for (let i = 0; i < length_Collections; i++) {
       values = collections[i].values;
-      let lineGenerator: any = d3.svg.line()
+      let lineGenerator: any = d3.line()
         .x(function(d, index) {return d3ScaleLabelsAxis(index)})
         .y(function(d) { return d3ScaleValuesAxis(d)})
-        .interpolate('linear');
+        .curve(d3.curveCardinal.tension(1));
       let collection: any = d3Selection
         .append('g')
         .attr('class', 'collection');
       // Path
       let path: any = collection
         .append('path')
-        .attr({
-          class: 'path',
-          d: lineGenerator(values)
-        })
-        .style({
-          fill: 'none',
-          stroke: d3ScaleColorPalette(i),
-          'stroke-opacity': strokeOpacity,
-          'stroke-width': strokeWidth
-        })
+        .attr('class', 'path')
+        .attr('d', lineGenerator(values))
+        .style('fill', 'none')
+        .style('stroke', d3ScaleColorPalette(i))
+        .style('stroke-opacity', strokeOpacity)
+        .style('stroke-width', strokeWidth)
         .on('mouseover', function(d) {
           this.style.strokeWidth = strokeWidthSelected
         })
@@ -83,13 +79,11 @@ export class PlotAreaLine extends PlotAreaOrthogonal {
         .data(values)
         .enter()
         .append('circle')
-        .attr({
-          'class': 'dataPoint',
-          'cx': function(d, index) {return d3ScaleLabelsAxis(index)},
-          'cy': function(d) { return d3ScaleValuesAxis(d)},
-          'fill': d3ScaleColorPalette(i),
-          'r': dataPointDiameter
-        })
+        .attr('class', 'dataPoint')
+        .attr('cx', function(d, index) {return d3ScaleLabelsAxis(index)})
+        .attr('cy', function(d) { return d3ScaleValuesAxis(d)})
+        .attr('fill', d3ScaleColorPalette(i))
+        .attr('r', dataPointDiameter)
         .on('mouseover', function(d, index) {
           // Increase radius
           this.setAttribute('r', dataPointDiameterSelected);
@@ -108,7 +102,7 @@ export class PlotAreaLine extends PlotAreaOrthogonal {
           tooltip.hide();
         });
       // If data point is selected, deselect it when user touches on body
-      d3.select('body')[0][0]
+      d3.select('body')['_groups'][0][0]
         .addEventListener('touchstart', function() {
           // Deselect data point if selected
           let length: number = dataPointsSelection[0].length;

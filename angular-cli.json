@@ -18,8 +18,7 @@
         "styles.css"
       ],
       "scripts": [
-        "../node_modules/d3/build/d3.min.js",
-        "../node_modules/uvCharts/dist/uvcharts.full.min.js"
+        "../node_modules/d3/build/d3.min.js"
       ],
       "environments": {
         "source": "environments/environment.ts",

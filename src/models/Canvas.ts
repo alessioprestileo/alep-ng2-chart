@@ -16,14 +16,14 @@ export class Canvas extends D3Element {
     let d3SelectionParentChartContainer: any = this.parentChart
       .getD3SelectionParentContainer();
 
-    this.width = d3SelectionParentChartContainer[0][0].offsetWidth;
+    this.width = d3SelectionParentChartContainer['_groups'][0][0].offsetWidth;
   }
   /* Protected methods */
   protected createD3Selection() : any {
     let d3SelectionParentChartContainer: any = this.parentChart
       .getD3SelectionParentContainer();
-
-    let canvasWidth: number = d3SelectionParentChartContainer[0][0].offsetWidth;
+    let canvasWidth: number = d3SelectionParentChartContainer['_groups'][0][0]
+        .offsetWidth;
     let d3Selection = d3SelectionParentChartContainer
       .append('svg')
       .attr('class', 'canvas')
@@ -32,7 +32,7 @@ export class Canvas extends D3Element {
     // Get correct value for canvasWidth. For some reason the correct value
     // is given only after appending the canvas, and only if the height of the
     // canvas is a large enough value.
-    canvasWidth = d3SelectionParentChartContainer[0][0].offsetWidth;
+    canvasWidth = d3SelectionParentChartContainer['_groups'][0][0].offsetWidth;
     // Update canvas width
     d3Selection.style('width', canvasWidth);
     return d3Selection;

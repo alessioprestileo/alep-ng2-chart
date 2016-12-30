@@ -12,10 +12,10 @@ export abstract class D3Element {
     return this.d3Selection;
   }
   public getHeight() : number {
-    return this.d3Selection[0][0].getBBox().height;
+    return this.d3Selection['_groups'][0][0].getBBox().height;
   }
   public getWidth() : number {
-    return this.d3Selection[0][0].getBBox().width;
+    return this.d3Selection['_groups'][0][0].getBBox().width;
   }
 
 }

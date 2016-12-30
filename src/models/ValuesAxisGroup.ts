@@ -34,26 +34,21 @@ export abstract class ValuesAxisGroup extends D3Element {
       .getPlotArea()
       .getWidth();
 
-    let d3Axis: any = d3.svg.axis()
-      .scale(d3Scale)
-      .orient('left');
+    let d3Axis: any = d3.axisLeft()
+      .scale(d3Scale);
     let d3SelectionAxis: any = d3Selection
       .append('g')
       .call(d3Axis)
-      .attr({
-        'class': 'axis',
-        'transform': `translate(${xPos} ${yPos})`
-      });
+      .attr('class', 'axis')
+      .attr('transform', `translate(${xPos} ${yPos})`);
     // Styling axis
     let stroke: string = styling.chartBody.vAxis.stroke[0];
     let strokeWidth: string =
       styling.chartBody.vAxis.strokeWidth[0].toString() + 'px';
     d3SelectionAxis.select('.domain')
-      .style({
-        'fill': 'none',
-        'stroke': stroke,
-        'stroke-width': strokeWidth
-      });
+      .style('fill', 'none')
+      .style('stroke', stroke)
+      .style('stroke-width', strokeWidth);
     // Styling tick lines
     let tickOpacity: number = styling.chartBody.vAxis.ticks.opacity[0];
     let tickStroke: string = styling.chartBody.vAxis.ticks.stroke[0];
@@ -62,17 +57,13 @@ export abstract class ValuesAxisGroup extends D3Element {
     d3SelectionAxis.selectAll('.tick line')
       .attr('class', 'tick-line')
       .attr('x2', -6)
-      .style({
-        'opacity': tickOpacity,
-        'stroke': tickStroke,
-        'stroke-width': tickStrokeWidth
-      });
+      .style('opacity', tickOpacity)
+      .style('stroke', tickStroke)
+      .style('stroke-width', tickStrokeWidth);
     // Styling tick labels
     let fontSize: number = styling.chartBody.vAxis.fontSize[0];
     d3SelectionAxis.selectAll('.tick text')
-      .style({
-        'font-size': fontSize
-      });
+      .style('font-size', fontSize);
     // Styling grid lines
     let gridOpacity: number = styling.chartBody.vAxis.gridLines.opacity[0];
     let gridStroke: string = styling.chartBody.vAxis.gridLines.stroke[0];
@@ -82,11 +73,9 @@ export abstract class ValuesAxisGroup extends D3Element {
       .append('line')
       .attr('class', 'grid-line')
       .attr('x2', plotAreaWidth)
-      .style({
-        'opacity': gridOpacity,
-        'stroke': gridStroke,
-        'stroke-width': gridStrokeWidth
-      });
+      .style('opacity', gridOpacity)
+      .style('stroke', gridStroke)
+      .style('stroke-width', gridStrokeWidth);
     return d3SelectionAxis;
   }
   private appendLabel() : any {
@@ -119,17 +108,13 @@ export abstract class ValuesAxisGroup extends D3Element {
       .attr('class', 'label')
       .append('text')
       .text(text)
-      .attr({
-        'dy': dy,
-        'text-anchor': 'middle',
-        'transform': `rotate(-90 ${xPos} ${yPos})`,
-        'x': xPos,
-        'y': yPos
-      })
-      .style({
-        'font-size': fontSize,
-        'font-weight': fontWeight
-      });
+      .attr('dy', dy)
+      .attr('text-anchor', 'middle')
+      .attr('transform', `rotate(-90 ${xPos} ${yPos})`)
+      .attr('x', xPos)
+      .attr('y', yPos)
+      .style('font-size', fontSize)
+      .style('font-weight', fontWeight);
     return d3SelectionLabel;
   }
   /* Protected methods */

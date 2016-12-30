@@ -43,17 +43,13 @@ export class Title extends WrappableD3TextElement {
 
     let d3Selection: any = parentCanvas.getD3Selection().append('text')
       .attr('class', 'chart-title')
+      .attr('transform', `translate(${xPos} ${yPos})`)
+      .attr('x', width / 2)
+      .attr('y', styling.title.fontSize[0])
       .text(text)
-      .attr({
-        'transform': `translate(${xPos} ${yPos})`,
-        'x': width / 2,
-        'y': styling.title.fontSize[0]
-      })
-      .style({
-        'font-size': styling.title.fontSize[0] + 'px',
-        'font-weight': styling.title.fontWeight[0],
-        'text-anchor': 'middle'
-      });
+      .style('font-size', styling.title.fontSize[0] + 'px')
+      .style('font-weight', styling.title.fontWeight[0])
+      .style('text-anchor', 'middle');
     this.wrap(d3Selection, width);
     return d3Selection;
   }

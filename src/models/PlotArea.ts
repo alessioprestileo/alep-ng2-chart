@@ -23,7 +23,7 @@ export abstract class PlotArea extends D3Element{
     for (let i = 0; i < domainLength; i++) {
       domain.push(i);
     }
-    let d3ScaleColorPalette: any = d3.scale.ordinal()
+    let d3ScaleColorPalette: any = d3.scaleOrdinal()
       .domain(domain)
       .range(colorRange);
     return d3ScaleColorPalette;

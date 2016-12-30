@@ -49,16 +49,12 @@ export class Subtitle extends WrappableD3TextElement {
     let d3Selection: any = parentCanvas.getD3Selection().append('text')
       .text(text)
       .attr('class', 'chart-subtitle')
-      .attr({
-        'transform': `translate(${xPos} ${yPos})`,
-        'x': width / 2,
-        'y': styling.subtitle.fontSize[0]
-      })
-      .style({
-        'font-size': styling.subtitle.fontSize[0] + 'px',
-        'font-weight': styling.subtitle.fontWeight[0],
-        'text-anchor': 'middle'
-      });
+      .attr('transform', `translate(${xPos} ${yPos})`)
+      .attr('x', width / 2)
+      .attr('y', styling.subtitle.fontSize[0])
+      .style('font-size', styling.subtitle.fontSize[0] + 'px')
+      .style('font-weight', styling.subtitle.fontWeight[0])
+      .style('text-anchor', 'middle');
     this.wrap(d3Selection, width);
     return d3Selection;
   }

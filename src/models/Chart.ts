@@ -55,7 +55,6 @@ export class Chart {
       subtitleMarginTop +
       subtitleHeight +
       visualizationHeight;
-
     this.canvas.getD3Selection().style('height', height);
     this.d3SelectionBackground.style('height', height);
   }

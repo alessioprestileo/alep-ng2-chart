@@ -30,15 +30,14 @@ export abstract class LabelsAxisGroup extends D3Element {
       .getParentChart()
       .getStyling();
 
-    let d3Axis: any = d3.svg.axis()
+    let d3Axis: any = d3.axisBottom()
       .scale(d3Scale)
-      .ticks(labels.length)
-      .orient('bottom');
+      .ticks(labels.length);
     let d3SelectionAxis: any = d3SelectionAxisGroup
       .append('g')
       .call(d3Axis)
       .attr('class', 'axis');
-    let fontSize: number = styling.chartBody.vAxis.fontSize[0];
+    let fontSize: number = styling.chartBody.hAxis.fontSize[0];
     let labelsAngle: number = styling.chartBody.hAxis.ticks.labelsAngle[0];
     let stroke: string;
     let strokeWidth: string;
@@ -52,60 +51,39 @@ export abstract class LabelsAxisGroup extends D3Element {
     d3SelectionAxis.selectAll('.tick text')
       .data(labels)
       .text((d) => {return d})
-      .style({
-        'font-size': fontSize,
-        'text-anchor': 'end'
-      })
-      .attr({
-        'dy': 0,
-        'transform':
-          `translate(0 ${fontSize}) rotate(${labelsAngle})`,
-        'y': 0
-      });
+      .style('font-size', fontSize)
+      .style('text-anchor', 'end')
+      .style('dy', 0)
+      .style('transform', `translate(0 ${fontSize}) rotate(${labelsAngle})`)
+      .style('y', 0);
     // Styling axis
     stroke = styling.chartBody.hAxis.stroke[0];
     strokeWidth = styling.chartBody.hAxis.strokeWidth[0].toString() + 'px';
     d3SelectionAxis.select('.domain')
-      .style({
-        'fill': 'none',
-        'stroke': stroke,
-        'stroke-width': strokeWidth
-      });
+      .style('fill', 'none')
+      .style('stroke', stroke)
+      .style('stroke-width', strokeWidth);
     // Styling tick lines
-    tickOpacity = styling.chartBody.hAxis
-      .ticks
-      .opacity[0];
-    tickStroke = styling.chartBody.hAxis
-      .ticks
-      .stroke[0];
-    tickStrokeWidth =
-      styling.chartBody.hAxis.ticks.strokeWidth[0];
+    tickOpacity = styling.chartBody.hAxis.ticks.opacity[0];
+    tickStroke = styling.chartBody.hAxis.ticks.stroke[0];
+    tickStrokeWidth = styling.chartBody.hAxis.ticks.strokeWidth[0];
     d3SelectionAxis.selectAll('.tick line')
       .attr('class', 'tick-line')
       .attr('y2', 6)
-      .style({
-        'opacity': tickOpacity,
-        'stroke': tickStroke,
-        'stroke-width': tickStrokeWidth
-      });
+      .style('opacity', tickOpacity)
+      .style('stroke', tickStroke)
+      .style('stroke-width', tickStrokeWidth);
     // Styling grid lines
-    gridOpacity = styling.chartBody.hAxis
-      .gridLines
-      .opacity[0];
-    gridStroke = styling.chartBody.hAxis
-      .gridLines
-      .stroke[0];
-    gridStrokeWidth =
-      styling.chartBody.hAxis.gridLines.strokeWidth[0];
+    gridOpacity = styling.chartBody.hAxis.gridLines.opacity[0];
+    gridStroke = styling.chartBody.hAxis.gridLines.stroke[0];
+    gridStrokeWidth = styling.chartBody.hAxis.gridLines.strokeWidth[0];
     d3SelectionAxis.selectAll('.tick')
       .append('line')
       .attr('class', 'grid-line')
       .attr('y2', -plotAreaHeight)
-      .style({
-        'opacity': gridOpacity,
-        'stroke': gridStroke,
-        'stroke-width': gridStrokeWidth
-      });
+      .attr('opacity', gridOpacity)
+      .attr('stroke', gridStroke)
+      .attr('stroke-width', gridStrokeWidth);
     return d3SelectionAxis;
   }
   protected appendLabel() : any {
@@ -116,7 +94,11 @@ export abstract class LabelsAxisGroup extends D3Element {
       .getStyling();
     let plotAreaWidth: number = this.parentChartBody.getPlotArea().getWidth();
     let plotAreaHeight: number = this.parentChartBody.getPlotArea().getHeight();
-    let axisGroupHeight: number = this.getHeight() - plotAreaHeight;
+    // Account for different result given by this.getHeight() depending on
+    // whether the browser is Chrome or Safari
+    let axisGroupHeight: number = this.getHeight() > plotAreaHeight ?
+        this.getHeight() - plotAreaHeight :
+        this.getHeight();
     let d3SelectionAxisGroup: any = this.d3Selection;
     let text: string = this.parentChartBody
       .getParentVisualization()
@@ -125,15 +107,9 @@ export abstract class LabelsAxisGroup extends D3Element {
       .getInputChart()
       .hAxisLabel;
 
-    let marginTop: number = styling.chartBody.hAxis
-      .label
-      .marginTop[0];
-    let fontSize: number = styling.chartBody.hAxis
-      .label
-      .fontSize[0];
-    let fontWeight: string = styling.chartBody.hAxis
-      .label
-      .fontWeight[0];
+    let marginTop: number = styling.chartBody.hAxis.label.marginTop[0];
+    let fontSize: number = styling.chartBody.hAxis.label.fontSize[0];
+    let fontWeight: string = styling.chartBody.hAxis.label.fontWeight[0];
     let x: number = plotAreaWidth / 2;
     let y: number = axisGroupHeight + fontSize;
     let d3SelectionLabel = d3SelectionAxisGroup
@@ -141,16 +117,12 @@ export abstract class LabelsAxisGroup extends D3Element {
       .attr('class', 'label')
       .append('text')
       .text(text)
-      .attr({
-        'dy': marginTop,
-        'text-anchor': 'middle',
-        'x': x,
-        'y': y
-      })
-      .style({
-        'font-size': fontSize,
-        'font-weight': fontWeight
-      });
+      .attr('dy', marginTop)
+      .attr('text-anchor', 'middle')
+      .attr('x', x)
+      .attr('y', y)
+      .style('font-size', fontSize)
+      .style('font-weight', fontWeight);
     return d3SelectionLabel;
   }
   protected createD3Scale(domainMin: number, domainMax: number) : any {
@@ -159,7 +131,7 @@ export abstract class LabelsAxisGroup extends D3Element {
       .getPlotArea()
       .getWidth();
 
-    let hScale: any = d3.scale.linear()
+    let hScale: any = d3.scaleLinear()
       .domain([domainMin, domainMax])
       .range([rangeMin, rangeMax]);
     return hScale;
