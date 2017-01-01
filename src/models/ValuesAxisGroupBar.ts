@@ -14,7 +14,7 @@ export class ValuesAxisGroupBar extends ValuesAxisGroup {
     let rangeMin: number = 0;
     let rangeMax: number = this.parentChartBody.getPlotArea().getHeight();
 
-    let d3Scale: any = d3.scale.linear()
+    let d3Scale: any = d3.scaleLinear()
       .domain([domainMin, domainMax])
       .range([rangeMax, rangeMin]);
     return d3Scale;

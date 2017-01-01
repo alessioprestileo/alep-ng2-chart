@@ -70,10 +70,10 @@ export abstract class PlotAreaCircular extends PlotArea {
       .getTooltip();
 
     let newLine: string = '<br/>';
-    let sliceArc: any = d3.svg.arc()
+    let sliceArc: any = d3.arc()
       .outerRadius(outerRadius)
       .innerRadius(innerRadius);
-    let pieLayout: any = d3.layout.pie()
+    let pieLayout: any = d3.pie()
       .sort(null)
       .value(function(d) {return d});
     let d3SelectionSlice: any = d3Selection.selectAll(".slice")
@@ -123,7 +123,7 @@ export abstract class PlotAreaCircular extends PlotArea {
         tooltip.hide();
       });
     // If slice is selected, deselect it when user touches on body
-    d3.select('body')[0][0]
+    d3.select('body')['_groups'][0][0]
       .addEventListener('touchstart', function() {
         // Deselect slice if selected
         let length: number = d3SelectionSlice[0].length;

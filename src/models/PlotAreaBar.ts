@@ -57,23 +57,21 @@ export class PlotAreaBar extends PlotAreaOrthogonal {
         .data(values)
         .enter()
         .append('rect')
-        .attr({
-          'class': 'bar',
-          'x': function(d, index) {
-            let result: number =
-              d3ScaleLabelsAxis(index) +
-              dataGroupPadding +
-              barGap * i +
-              barWidth * i;
-            return result;
-          },
-          'y': function(d) { return d3ScaleValuesAxis(d)},
-          'fill': d3ScaleColorPalette(i),
-          'height': function(d) {
-            return (d3ScaleValuesAxis(0) - d3ScaleValuesAxis(d))
-          },
-          'width': barWidth + 'px'
+        .attr('class', 'bar')
+        .attr('x', function(d, index) {
+          let result: number =
+            d3ScaleLabelsAxis(index) +
+            dataGroupPadding +
+            barGap * i +
+            barWidth * i;
+          return result;
         })
+        .attr('y', function(d) { return d3ScaleValuesAxis(d)})
+        .attr('fill', d3ScaleColorPalette(i))
+        .attr('height', function(d) {
+          return (d3ScaleValuesAxis(0) - d3ScaleValuesAxis(d))
+        })
+        .attr('width', barWidth + 'px')
         .on('mouseover', function(d, index) {
           // Add shadow
           this.setAttribute(
@@ -113,7 +111,7 @@ export class PlotAreaBar extends PlotAreaOrthogonal {
           tooltip.hide();
         });
       // If bar is selected, deselect it when user touches on body
-      d3.select('body')[0][0]
+      d3.select('body')['_groups'][0][0]
         .addEventListener('touchstart', function() {
           // Deselect bar if selected
           let length: number = d3SelectionBar[0].length;
